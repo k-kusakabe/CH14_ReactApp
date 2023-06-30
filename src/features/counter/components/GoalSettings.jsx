@@ -16,6 +16,7 @@ import {
   setCalorie,
 } from "../counterSlice";
 import { useDispatch, useSelector } from "react-redux";
+import Home from "./Home";
 
 const GoalSettings = () => {
   const targetWeight = useSelector(selectTargetWeight);
@@ -27,6 +28,14 @@ const GoalSettings = () => {
   const calorie = useSelector(selectCalorie);
 
   const dispatch = useDispatch();
+
+  //This is temporary code to manage and test page transition at this stage. Will be replaced once backend has been setup
+  //This page rendered only for the first time. Once the necessary data has been registered, Home components directly rendered.
+  const submitData = (e) => {
+    e.preventDefault();
+    localStorage.setItem("calorie", calorie);
+    window.location.href = <Home />;
+  };
 
   const onTargetWeightInput = (e) => {
     dispatch(setTargetWeight(e.target.value));
@@ -154,7 +163,9 @@ const GoalSettings = () => {
         Get your daily Calorie!
       </button>
       <p>Your daily calorie is {Math.floor(calorie)}</p>
-      <button>Register the result and start your diet</button>
+      <button onClick={submitData}>
+        Register the result and start your diet
+      </button>
     </>
   );
 };
