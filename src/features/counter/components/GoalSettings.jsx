@@ -16,7 +16,6 @@ import {
   setCalorie,
 } from "../counterSlice";
 import { useDispatch, useSelector } from "react-redux";
-import Home from "./Home";
 
 const GoalSettings = () => {
   const targetWeight = useSelector(selectTargetWeight);
@@ -34,7 +33,7 @@ const GoalSettings = () => {
   const submitData = (e) => {
     e.preventDefault();
     localStorage.setItem("calorie", calorie);
-    window.location.href = <Home />;
+    window.location.href = "/";
   };
 
   const onTargetWeightInput = (e) => {

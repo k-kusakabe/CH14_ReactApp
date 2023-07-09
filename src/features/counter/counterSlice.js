@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fetchCount } from "./counterAPI";
 
-const initialState = {};
+const initialState = { breakfast: 0, breakfastModal: false };
 
 export const counterSlice = createSlice({
   name: "counter",
@@ -33,13 +33,27 @@ export const counterSlice = createSlice({
     },
 
     setCalorie: (state, action) => {
-      state.calorie = action.payload;
+      state.calorie += action.payload;
     },
 
-    // setCalories: (state, action) => {
-    //   const {age, gender, height, currentWeight, excise} = action.payload
-    //   state.
-    // }
+    setBreakfast: (state, action) => {
+      state.breakfast += action.payload;
+    },
+
+    setBreakfastValue: (state, action) => {
+      state.breakfastValue = action.payload;
+    },
+
+    setFoodName: (state, action) => {
+      state.foodName = action.payload;
+    },
+
+    setApiData: (state, action) => {
+      state.apiData = action.payload;
+    },
+    setBreakfastModal: (state, action) => {
+      state.breakfastModal = action.payload;
+    },
   },
 });
 
@@ -51,6 +65,11 @@ export const {
   setGender,
   setExerciseHabit,
   setCalorie,
+  setBreakfast,
+  setBreakfastValue,
+  setFoodName,
+  setApiData,
+  setBreakfastModal,
 } = counterSlice.actions;
 
 export const selectTargetWeight = (state) => state.counter.targetWeight;
@@ -60,5 +79,10 @@ export const selectHeight = (state) => state.counter.height;
 export const selectCurrentWeight = (state) => state.counter.currentWeight;
 export const selectExerciseHabit = (state) => state.counter.exerciseHabit;
 export const selectCalorie = (state) => state.counter.calorie;
+export const selectBreakfast = (state) => state.counter.breakfast;
+export const selectBreakfastValue = (state) => state.counter.breakfastValue;
+export const selectFoodName = (state) => state.counter.foodName;
+export const selectApiData = (state) => state.counter.apiData;
+export const selectBreakfastModal = (state) => state.counter.breakfastModal;
 
 export default counterSlice.reducer;
